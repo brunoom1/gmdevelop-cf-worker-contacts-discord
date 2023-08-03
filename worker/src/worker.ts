@@ -31,16 +31,39 @@ export default {
 			const data = await request.json<RequestData>();
 
 			try {
-				await axios.post(`${webhookURL}/webhooks/${webhookId}/${webhookToken}`, {
-					content:	`## Mensagem do site` + 
-								`Nome: ${data.name}` + 
-								`Email: ${data.email}` + 
-								`Telefone: ${data.cellphone}` + 
-								`Mensagem: ${data.message}`					
+
+				const webhookFullUrl = `${webhookURL}/webhooks/${webhookId}/${webhookToken}`;
+
+				const content = `## Mensagem do site` + 
+				`Nome: ${data.name}` + 
+				`Email: ${data.email}` + 
+				`Telefone: ${data.cellphone}` + 
+				`Mensagem: ${data.message}`;
+
+				console.log({
+					"url": webhookFullUrl,
+					"teste": "teste",
+					...data,
+					webhookId,
+					webhookToken,
+					webhookURL,
+					content
 				});
+
+				const result = await axios.post(webhookFullUrl, {
+					content
+				});
+
+				return new Response(result.statusText, {
+					status: result.status
+				});
+
 			} catch (err) {
 				console.log(err);
 			}
+
+			return new Response('post -- response!');
+
 		}
 
 		return new Response('Hello World!');

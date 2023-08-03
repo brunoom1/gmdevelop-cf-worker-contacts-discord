@@ -8,6 +8,11 @@ compatibility_date = "2023-08-01"
 # [vars]
 # MY_VARIABLE = "production_value"
 
+[vars]
+webhookDiscordId = "1136691649192411146"
+webhookDiscordToken = "pET7pTNqypLwGMXZwAgt2DKFoe24XoiAGd9e-_HKxDrBbX4YF-h5KDICFGolFSnf_iC2"
+webhookDiscordURL = "https://discord.com/api"
+
 # Bind a KV Namespace. Use KV as persistent storage for small key-value pairs.
 # Docs: https://developers.cloudflare.com/workers/runtime-apis/kv
 # [[kv_namespaces]]
